@@ -3,7 +3,7 @@
 
 #define TRIG_PIN 18
 #define ECHO_PIN 19
-#define OFFSET -0.3
+#define OFFSET -0.9
 
 typedef struct {
     float Q;          // Process noise covariance
@@ -17,14 +17,15 @@ typedef struct {
 
 // Initialize Kalman filter with calibration offset,, initialisd ONCE
 static KalmanFilter filter = {
-    .Q = 0.05,   // Process Noise: how much noise
-    .R = 0.4,    // Measurment Noise: varience 
+    .P = 0.7,    // Error Covarience: confidence (1 = not confident, 0 = confident)
+    .Q = 0.05,    // Process Noise: how much noise
+    .R = 0.15,    // Measurment Noise: varience 
     .X = 0.0,    // estimated value
-    .P = 1.0,    // Error Covarience: confidence (1 = not confident, 0 = confident)
     .initialized = false,
     .offset = OFFSET,  // Add calibration offset
 };
 
+float kalman_update(KalmanFilter* filter, float raw_measurement);
 void setup_ultrasonic();
 uint64_t getPulse();
 float getCm();

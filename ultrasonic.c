@@ -64,7 +64,7 @@ uint64_t getPulse()
 float getCm()
 {
     uint64_t pulseLength = getPulse();
-    float measured_length = pulseLength / 29 / 2; // convert pulse length to cm
+    float measured_length = (float)pulseLength / 29 / 2; // convert pulse length to cm
 
     return kalman_update(&filter, measured_length);
 }
@@ -88,7 +88,7 @@ void setup_ultrasonic()
     // Initialize trigger pin to low
     gpio_put(TRIG_PIN, 0);
 
-    // printf("Ultrasonic Setup complete!\n");
+    printf("Ultrasonic Setup complete!\n");
 }
  
 // int main()

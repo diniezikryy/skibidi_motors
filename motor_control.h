@@ -16,12 +16,13 @@
 
 // PWM configuration for floor operation
 #define DEFAULT_PWM_FREQ 125.0f
-#define DEFAULT_DUTY_CYCLE 0.8f     // 80% base power
-#define MIN_DUTY_CYCLE 0.6f         // 60% minimum
-#define MAX_DUTY_CYCLE 0.95f        // 95% maximum
+#define DEFAULT_DUTY_CYCLE 0.7f     // Reduce from 0.8
+#define MIN_DUTY_CYCLE 0.4f         // Keep as is
+#define MAX_DUTY_CYCLE 0.9f         // Reduce from 0.95
 
 // Increased compensation for right motor
-#define RIGHT_MOTOR_COMPENSATION 1.2f  // Increased to 20% more power
+#define LEFT_MOTOR_COMPENSATION 1.1f  // Add this new compensation factor
+#define RIGHT_MOTOR_COMPENSATION 1.0f  // Modify existing to be explicit
 
 // Direction definitions
 typedef enum {

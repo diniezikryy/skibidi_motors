@@ -5,13 +5,13 @@
 #include "motor_control.h"
 #include "ir_encoder.h"
 
-// Increased proportional gain for stronger correction
-#define KP 0.6f            // Doubled from 0.02 for stronger correction
-#define KI 0.2f           // Small integral term to handle persistent error
-#define KD 0.1f            // Added derivative term to prevent oscillation
+#define KP 0.15f          // Reduced for gentler corrections
+#define KI 0.05f          // Much smaller integral term
+#define KD 0.08f          // Increased damping to reduce oscillation
+#define DEADBAND 1.5f     // Wider deadband to ignore small differences
 
-// Higher deadband since we're using higher speeds
-#define DEADBAND 1.0f       // Reduced to make it more responsive
+#define LEFT_BIAS 1.00f  // Adjust this value based on testing
+
 
 void init_pid(void);
 void update_pid(void);

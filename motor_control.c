@@ -119,9 +119,11 @@ void set_pwm_frequency(float new_freq) {
 
 void set_individual_motor_speed(uint motor_number, float duty_cycle) {
     if (motor_number == 1) {
-        set_motor_speed(MOTOR1_PWM_PIN, duty_cycle);
+        // Apply compensation to left motor to overcome friction
+        float compensated_duty = duty_cycle * LEFT_MOTOR_COMPENSATION;
+        if (compensated_duty > MAX_DUTY_CYCLE) compensated_duty = MAX_DUTY_CYCLE;
+        set_motor_speed(MOTOR1_PWM_PIN, compensated_duty);
     } else if (motor_number == 2) {
-        // Apply compensation to right motor
         float compensated_duty = duty_cycle * RIGHT_MOTOR_COMPENSATION;
         if (compensated_duty > MAX_DUTY_CYCLE) compensated_duty = MAX_DUTY_CYCLE;
         set_motor_speed(MOTOR2_PWM_PIN, compensated_duty);
