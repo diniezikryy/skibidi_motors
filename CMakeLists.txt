@@ -38,6 +38,7 @@ add_executable(skibidi_motor_pid
     motor_control.c
     ir_encoder.c
     pid_control.c
+    ultrasonic.c
 )
 
 pico_set_program_name(skibidi_motor_pid "skibidi_motor_pid")
@@ -49,6 +50,7 @@ pico_enable_stdio_usb(skibidi_motor_pid 1)
 
 # Add the standard library to the build
 target_link_libraries(skibidi_motor_pid
+        hardware_timer
         pico_stdlib)
 
 # Add the standard include files to the build

@@ -1,17 +1,19 @@
 #ifndef PID_CONTROL_H
 #define PID_CONTROL_H
 
+#include <math.h>
 #include "motor_control.h"
 #include "ir_encoder.h"
 
-// PID constants
-#define KP 0.005f    // Proportional gain
-#define KI 0.001f    // Integral gain
-#define KD 0.001f    // Derivative gain
+// Increased proportional gain for stronger correction
+#define KP 0.6f            // Doubled from 0.02 for stronger correction
+#define KI 0.2f           // Small integral term to handle persistent error
+#define KD 0.1f            // Added derivative term to prevent oscillation
 
-// Function declarations
+// Higher deadband since we're using higher speeds
+#define DEADBAND 1.0f       // Reduced to make it more responsive
+
 void init_pid(void);
-void update_pid(float target_speed);
-void reset_pid(void);
+void update_pid(void);
 
 #endif // PID_CONTROL_H
